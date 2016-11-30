@@ -18,10 +18,9 @@ public class listActivity extends Activity {
     }
 
     private void populateListview() {
-        String [] fiilliste={"A","Ağlamak","Almak","B","Bulmak"};
-        ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, fiilliste);
-        ListView list = (ListView) findViewById(R.id.menuList);
-        list.setAdapter(adapter);
+        String [] fiilliste={"1","2","3","4","5","6","7","8","9","10","11","12","13"}; //Makes Array
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, fiilliste);;//Sets new Array Adapter
+        ListView list = (ListView) findViewById(R.id.menuList); //Sets listview of menuList to list
+        list.setAdapter(adapter); //Sets adapter of list to adapter set before
     }
 }
