@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".listActivity"></activity>
+        <activity android:name=".listActivity" />
+        <activity android:name=".InfoPage"></activity>
     </application>
 
 </manifest>
