@@ -1,8 +1,5 @@
 package zep.daan.myapplication;
 
-import java.util.ArrayList;
-
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class listActivity extends Activity {
     @Override
@@ -43,7 +41,6 @@ public class listActivity extends Activity {
 
     private ArrayList<myArray> GetSearchResults(){
         ArrayList<myArray> results = new ArrayList<myArray>();
-
         myArray sr = new myArray();
         sr.setName("Justin Schultz");
         sr.setCityState("San Francisco, CA");

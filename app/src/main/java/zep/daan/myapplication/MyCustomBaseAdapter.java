@@ -1,13 +1,16 @@
 package zep.daan.myapplication;
-import java.util.ArrayList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MyCustomBaseAdapter extends android.widget.BaseAdapter {
+
     private static ArrayList<myArray> searchArrayList;
 
     private LayoutInflater mInflater;
@@ -29,32 +32,31 @@ public class MyCustomBaseAdapter extends android.widget.BaseAdapter {
         return position;
     }
 
+
+
+
+
+
+
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.list_item, null);
             holder = new ViewHolder();
             holder.txtName = (TextView) convertView.findViewById(R.id.name);
-            holder.txtCityState = (TextView) convertView
-                    .findViewById(R.id.city_state);
-            holder.txtPhone = (TextView) convertView.findViewById(R.id.phone);
-
+            holder.image = (ImageView) convertView.findViewById(R.id.imageView);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         holder.txtName.setText(searchArrayList.get(position).getName());
-        holder.txtCityState.setText(searchArrayList.get(position)
-                .getCityState());
-        holder.txtPhone.setText(searchArrayList.get(position).getPhone());
-
+        holder.image.setImageResource(R.drawable.ic_action_name);
         return convertView;
     }
 
     static class ViewHolder {
         TextView txtName;
-        TextView txtCityState;
-        TextView txtPhone;
+        ImageView image;
+
     }
 }
