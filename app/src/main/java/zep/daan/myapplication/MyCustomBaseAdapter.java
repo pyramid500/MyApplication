@@ -17,8 +17,6 @@ public class MyCustomBaseAdapter extends android.widget.BaseAdapter {
 
     private LayoutInflater mInflater;
 
-    private static ArrayList<myArray> getImagepath;
-
     public MyCustomBaseAdapter(Context context, ArrayList<myArray> results) {
         searchArrayList = results;
         mInflater = LayoutInflater.from(context);
