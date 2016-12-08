@@ -30,7 +30,13 @@ public class NavigationDrawer extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        if (savedInstanceState == null) {
+            navigationView.getMenu().performIdentifierAction(R.id.nav_voorpagina, 0);
+            navigationView.getMenu().getItem(0).setChecked(true);
+
+        }
     }
+
 
     @Override
     public void onBackPressed() {
@@ -71,18 +77,22 @@ public class NavigationDrawer extends AppCompatActivity
         int id = item.getItemId();
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_voorpagina) {
             // Handle the camera action
             fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment1()).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_binnenland) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_buitenland) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_politiek) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_economie) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_technologie) {
+
+        } else if (id == R.id.nav_entertainment) {
+
+        } else if (id == R.id.nav_sport) {
 
         }
 
