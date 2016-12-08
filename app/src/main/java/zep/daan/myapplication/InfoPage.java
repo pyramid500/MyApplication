@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class InfoPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,20 @@ public class InfoPage extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-
-
         Intent infointent = getIntent();
+
+
+        Calendar thatDay = Calendar.getInstance();
+        thatDay.set(Calendar.DAY_OF_MONTH,25);
+        thatDay.set(Calendar.MONTH,7); // 0-11 so 1 less
+        thatDay.set(Calendar.YEAR, 1985);
+
+        Calendar today = Calendar.getInstance();
+
+        long diff = today.getTimeInMillis() - thatDay.getTimeInMillis(); //result in millis
+
+
+
         String message = infointent.getStringExtra("name");
         String citystate = infointent.getStringExtra("cs");
         String phonenr = infointent.getStringExtra("phonenr");
@@ -46,4 +59,5 @@ public class InfoPage extends AppCompatActivity {
         inflater.inflate(R.menu.menu_article, menu);
         return true;
     }
+
 }

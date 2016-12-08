@@ -19,7 +19,7 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = (ViewGroup) inflater.inflate(R.layout.fragment1, null, false);
+        View view = (ViewGroup) inflater.inflate(R.layout.fragment1, container, false);
         return view;
     }
 
@@ -28,7 +28,7 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<myArray> searchResults = GetSearchResults();
+        ArrayList<myArray> searchResults = myArray.GetSearchResults();
 
         final ListView lv = getListView();
         lv.setAdapter(new MyCustomBaseAdapter(getActivity(), searchResults));
@@ -37,9 +37,10 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
 
 
 
+
     public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
-        final ListView lv = getListView();
         Intent infointent = new Intent(getActivity(), InfoPage.class);
+        final ListView lv = getListView();
         Object o = lv.getItemAtPosition(position);
         myArray fullObject = (myArray) o;
         String name = fullObject.getName();
@@ -51,78 +52,4 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
         startActivity(infointent);
     }
 
-    private ArrayList<myArray> GetSearchResults(){
-        ArrayList<myArray> results = new ArrayList<myArray>();
-        myArray sr = new myArray();
-        sr.setName("Justin Schultz");
-        sr.setCityState("San Francisco, CA");
-        sr.setPhone("415-555-1234");
-        sr.setImage(R.drawable.image2);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Jane Doe");
-        sr.setCityState("Las Vegas, NV");
-        sr.setPhone("702-555-1234");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Lauren Sherman");
-        sr.setCityState("San Francisco, CA");
-        sr.setPhone("415-555-1234");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Fred Jones");
-        sr.setCityState("Minneapolis, MN");
-        sr.setPhone("612-555-8214");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Bill Withers");
-        sr.setCityState("Los Angeles, CA");
-        sr.setPhone("424-555-8214");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Donald Fagen");
-        sr.setCityState("Los Angeles, CA");
-        sr.setPhone("424-555-1234");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Steve Rude");
-        sr.setCityState("Oakland, CA");
-        sr.setPhone("515-555-2222");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Roland Bloom");
-        sr.setCityState("Chelmsford, MA");
-        sr.setPhone("978-555-1111");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Sandy Baguskas");
-        sr.setCityState("Chelmsford, MA");
-        sr.setPhone("978-555-2222");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        sr = new myArray();
-        sr.setName("Scott Taylor");
-        sr.setCityState("Austin, TX");
-        sr.setPhone("512-555-2222");
-        sr.setImage(R.drawable.ic_action_name);
-        results.add(sr);
-
-        return results;
-    }
 }
