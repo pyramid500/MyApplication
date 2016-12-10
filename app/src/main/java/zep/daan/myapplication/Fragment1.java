@@ -19,7 +19,7 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = (ViewGroup) inflater.inflate(R.layout.fragment1, container, false);
+        View view = inflater.inflate(R.layout.fragment1, container, false);
         return view;
     }
 
