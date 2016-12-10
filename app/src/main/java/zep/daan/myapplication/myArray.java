@@ -47,7 +47,7 @@ public class myArray {
         sr.setName("Donald Trump");
         sr.setCityState("San Francisco, CA");
         sr.setPhone("415-555-1234");
-        sr.setDate("7-12-2016 12:00");
+        sr.setDate("10-12-2016 13:00");
         sr.setImage(R.drawable.image2);
         results.add(sr);
 
@@ -55,7 +55,7 @@ public class myArray {
         sr.setName("Jane Doe");
         sr.setCityState("Las Vegas, NV");
         sr.setPhone("702-555-1234");
-        sr.setDate("6-12-2016 12:00");
+        sr.setDate("9-12-2016 15:00");
         sr.setImage(R.drawable.ic_action_name);
         results.add(sr);
 
@@ -63,7 +63,7 @@ public class myArray {
         sr.setName("Lauren Sherman");
         sr.setCityState("San Francisco, CA");
         sr.setPhone("415-555-1234");
-        sr.setDate("8-12-2016 1:00");
+        sr.setDate("8-12-2016 9:00");
         sr.setImage(R.drawable.ic_action_name);
         results.add(sr);
 

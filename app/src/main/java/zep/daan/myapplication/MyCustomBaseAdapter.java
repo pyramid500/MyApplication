@@ -58,7 +58,7 @@ public class MyCustomBaseAdapter extends android.widget.BaseAdapter {
         String someDate = searchArrayList.get(position).getDate();
 
         String dateResult;
-            DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy hh:mm"));
+            DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy kk:mm"));
             DateTime presentTime = DateTime.now();
             dateResult ="Error";
             int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
