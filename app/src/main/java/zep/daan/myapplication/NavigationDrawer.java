@@ -2,6 +2,7 @@ package zep.daan.myapplication;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -109,9 +110,11 @@ public class NavigationDrawer extends AppCompatActivity
 
         } else if (id == R.id.nav_entertainment) {
 
-        } else if (id == R.id.nav_sport) {
-
+        } else if (id == R.id.instellingen) {
+            Intent instellingenIntent = new Intent(this, AppSettings.class);
+            startActivity(instellingenIntent);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
