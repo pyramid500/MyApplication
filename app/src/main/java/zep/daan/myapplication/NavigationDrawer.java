@@ -111,7 +111,7 @@ public class NavigationDrawer extends AppCompatActivity
         } else if (id == R.id.nav_entertainment) {
 
         } else if (id == R.id.instellingen) {
-            Intent instellingenIntent = new Intent(this, AppSettings.class);
+            Intent instellingenIntent = new Intent(this, SettingsActivity.class);
             startActivity(instellingenIntent);
         }
 
