@@ -22,11 +22,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("EXTRA_MESSAGE", message);
         startActivity(intent);
     }
-    public void listLink(View view) {
-        // Do something in response to button
-        Intent listintent = new Intent(this, listActivity.class);
-        startActivity(listintent);
-    }
     public void navdrawerLink(View view) {
         // Do something in response to button
         Intent listintent = new Intent(this, NavigationDrawer.class);

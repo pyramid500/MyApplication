@@ -22,11 +22,15 @@ public class SearchResults extends Activity {
             ArrayList<myArray> searchResults2 = myArray.GetSearchResults();
             ArrayList<myArray> results = new ArrayList<myArray>();
             for(myArray d : searchResults2){
-                if(d.getName().contains(query) || d.getCityState().contains(query) || d.getPhone().contains(query)){
+                String article = (d.getArticle()).toLowerCase();
+                String headline = (d.getHeadline()).toLowerCase();
+                String section = (d.getSection()).toLowerCase();
+                String lquery = query.toLowerCase();
+                if(article.contains(lquery) || headline.contains(lquery) || section.contains(lquery)){
                     myArray sr = new myArray();
-                    sr.setName(d.getName());
-                    sr.setCityState(d.getCityState());
-                    sr.setPhone(d.getPhone());
+                    sr.setHeadline(d.getHeadline());
+                    sr.setArticle(d.getArticle());
+                    sr.setSection(d.getSection());
                     sr.setDate(d.getDate());
                     sr.setImage(d.getImage());
                     results.add(sr);

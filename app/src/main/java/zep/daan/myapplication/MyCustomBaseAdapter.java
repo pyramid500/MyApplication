@@ -81,7 +81,7 @@ public class MyCustomBaseAdapter extends android.widget.BaseAdapter {
 
 
 
-        holder.txtName.setText(searchArrayList.get(position).getName());
+        holder.txtName.setText(searchArrayList.get(position).getHeadline());
         holder.image.setImageResource(searchArrayList.get(position).getImage());
         holder.time.setText(dateResult);
         return convertView;

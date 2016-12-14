@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.TextView;
 
-import java.util.Calendar;
+import static zep.daan.myapplication.R.id.phonenr;
 
 public class InfoPage extends AppCompatActivity {
     @Override
@@ -32,26 +32,15 @@ public class InfoPage extends AppCompatActivity {
         Intent infointent = getIntent();
 
 
-        Calendar thatDay = Calendar.getInstance();
-        thatDay.set(Calendar.DAY_OF_MONTH,25);
-        thatDay.set(Calendar.MONTH,7); // 0-11 so 1 less
-        thatDay.set(Calendar.YEAR, 1985);
-
-        Calendar today = Calendar.getInstance();
-
-        long diff = today.getTimeInMillis() - thatDay.getTimeInMillis(); //result in millis
-
-
-
-        String message = infointent.getStringExtra("name");
-        String citystate = infointent.getStringExtra("cs");
-        String phonenr = infointent.getStringExtra("phonenr");
+        String headline = infointent.getStringExtra("headline");
+        String article = infointent.getStringExtra("article");
+        String section = infointent.getStringExtra("section");
         TextView text = (TextView) findViewById(R.id.uname);
-        text.setText(message);
+        text.setText(headline);
         TextView text1 = (TextView) findViewById(R.id.city_state);
-        text1.setText(citystate);
-        TextView text2 = (TextView) findViewById(R.id.phonenr);
-        text2.setText(phonenr);
+        text1.setText(article);
+        TextView text2 = (TextView) findViewById(phonenr);
+        text2.setText(section);
     }
     public boolean onCreateOptionsMenu(Menu menu)
     {

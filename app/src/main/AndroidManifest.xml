@@ -16,10 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".listActivity" />
         <activity
             android:name=".InfoPage"
-            android:parentActivityName=".listActivity" />
+            />
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"

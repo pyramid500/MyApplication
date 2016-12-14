@@ -43,12 +43,12 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
         final ListView lv = getListView();
         Object o = lv.getItemAtPosition(position);
         myArray fullObject = (myArray) o;
-        String name = fullObject.getName();
-        infointent.putExtra("name", name);
-        String cityandstate = fullObject.getCityState();
-        infointent.putExtra("cs", cityandstate);
-        String phonenr = fullObject.getPhone();
-        infointent.putExtra("phonenr", phonenr);
+        String headline = fullObject.getHeadline();
+        infointent.putExtra("headline", headline);
+        String article = fullObject.getArticle();
+        infointent.putExtra("article", article);
+        String section = fullObject.getSection();
+        infointent.putExtra("section", section);
         startActivity(infointent);
     }
 

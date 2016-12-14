@@ -18,6 +18,7 @@ import static zep.daan.myapplication.R.id.imageView;
 
 public class SearchListAdapter extends android.widget.BaseAdapter {
 
+
     private static ArrayList<myArray> searchArrayList;
 
     private LayoutInflater mInflater;
@@ -40,16 +41,16 @@ public class SearchListAdapter extends android.widget.BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        MyCustomBaseAdapter.ViewHolder holder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.list_item, null);
-            holder = new ViewHolder();
+            holder = new MyCustomBaseAdapter.ViewHolder();
             holder.txtName = (TextView) convertView.findViewById(R.id.name);
             holder.image = (ImageView) convertView.findViewById(imageView);
             holder.time = (TextView) convertView.findViewById(R.id.time);
             convertView.setTag(holder);
         } else {
-            holder = (ViewHolder) convertView.getTag();
+            holder = (MyCustomBaseAdapter.ViewHolder) convertView.getTag();
         }
 
 
@@ -58,30 +59,30 @@ public class SearchListAdapter extends android.widget.BaseAdapter {
         String someDate = searchArrayList.get(position).getDate();
 
         String dateResult;
-            DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy kk:mm"));
-            DateTime presentTime = DateTime.now();
-            dateResult ="Error";
-            int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
-            if(days>2) {
-                dateResult = someDate;
-            }
-            else if(days == 2){
-                dateResult = "Eergisteren";
-            }
-            else if(days == 1){
-                dateResult = "Gisteren";
-            }
-            else if (days<1){
-                int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
-                dateResult = Integer.toString(hours) + " Uur Geleden";
-            }
+        DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy kk:mm"));
+        DateTime presentTime = DateTime.now();
+        dateResult ="Error";
+        int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
+        if(days>2) {
+            dateResult = someDate;
+        }
+        else if(days == 2){
+            dateResult = "Eergisteren";
+        }
+        else if(days == 1){
+            dateResult = "Gisteren";
+        }
+        else if (days<1){
+            int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
+            dateResult = Integer.toString(hours) + " Uur Geleden";
+        }
 
 
 
 
 
 
-        holder.txtName.setText(searchArrayList.get(position).getName());
+        holder.txtName.setText(searchArrayList.get(position).getHeadline());
         holder.image.setImageResource(searchArrayList.get(position).getImage());
         holder.time.setText(dateResult);
         return convertView;
