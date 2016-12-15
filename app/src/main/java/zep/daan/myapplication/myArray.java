@@ -53,7 +53,7 @@ public class myArray {
         ArrayList<myArray> results = new ArrayList<myArray>();
         myArray sr = new myArray();
         sr.setHeadline("Donald Trump");
-        sr.setArticle("San Francisco, CA");
+        sr.setArticle("Is an idiot");
         sr.setSection("415-555-1234");
         sr.setFrontpage("yes");
         sr.setDate("10-12-2016 13:00");

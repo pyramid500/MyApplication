@@ -40,6 +40,15 @@ public class SearchResults extends Activity {
                     listView1.setAdapter(new SearchListAdapter(this, results));
                 }
                 else{
+                    myArray sr = new myArray();
+                    sr.setHeadline("Geen Resultaten");
+                    sr.setArticle("Geen Resultaten");
+                    sr.setSection("Geen Resultaten");
+                    sr.setDate("Geen Resultaten");
+                    sr.setImage(R.drawable.image2);
+                    results.add(sr);
+                    ListView listView1 = (ListView) findViewById(R.id.search_list);
+                    listView1.setAdapter(new SearchListAdapter(this, results));
 
                 }
             }

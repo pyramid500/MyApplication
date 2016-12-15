@@ -17,8 +17,11 @@
         </activity>
         <activity android:name=".DisplayMessageActivity" />
         <activity
-            android:name=".InfoPage"
-            />
+            android:name=".InfoPage">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="zep.daan.myapplication.NavigationDrawer" />
+            </activity>
         <activity
             android:name=".NavigationDrawer"
             android:label="@string/title_activity_navigation_drawer"
@@ -39,7 +42,6 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
-        <activity android:name=".AppSettings" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
