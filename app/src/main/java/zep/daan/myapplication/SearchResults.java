@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -35,20 +38,19 @@ public class SearchResults extends Activity {
                     sr.setImage(d.getImage());
                     results.add(sr);
                 }
-                if(results != null) {
+                if(!results.isEmpty()) {
                     ListView listView1 = (ListView) findViewById(R.id.search_list);
                     listView1.setAdapter(new SearchListAdapter(this, results));
                 }
                 else{
-                    myArray sr = new myArray();
-                    sr.setHeadline("Geen Resultaten");
-                    sr.setArticle("Geen Resultaten");
-                    sr.setSection("Geen Resultaten");
-                    sr.setDate("Geen Resultaten");
-                    sr.setImage(R.drawable.image2);
-                    results.add(sr);
-                    ListView listView1 = (ListView) findViewById(R.id.search_list);
-                    listView1.setAdapter(new SearchListAdapter(this, results));
+                    View Layout =  findViewById(R.id.content_navigation_drawer);
+                    //LinearLayout layout = (LinearLayout) findViewById(R.id.info);
+
+                    TextView valueTV = new TextView(this);
+                    valueTV.setText("No Results");
+                    valueTV.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+
+                    ((RelativeLayout) Layout).addView(valueTV);
 
                 }
             }
