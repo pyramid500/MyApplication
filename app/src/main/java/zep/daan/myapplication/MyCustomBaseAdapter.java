@@ -73,7 +73,7 @@ public class MyCustomBaseAdapter extends android.widget.BaseAdapter {
             }
             else if (days<1){
                 int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
-                dateResult = Integer.toString(hours) + " Uur Geleden";
+                dateResult = Integer.toString(hours) + " uur geleden";
             }
 
 
