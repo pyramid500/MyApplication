@@ -4,8 +4,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_app"
-        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Nieuws"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".MainActivity">
