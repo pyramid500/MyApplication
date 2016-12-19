@@ -23,12 +23,11 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
         return view;
     }
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<myArray> searchResults = myArray.GetSearchResults();
+        ArrayList<myArray> searchResults = new myArray().GetSearchResults();
 
         final ListView lv = getListView();
         lv.setAdapter(new MyCustomBaseAdapter(getActivity(), searchResults));

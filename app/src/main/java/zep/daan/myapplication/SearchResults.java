@@ -22,7 +22,7 @@ public class SearchResults extends Activity {
         Intent intent = getIntent().setData(null);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            ArrayList<myArray> searchResults2 = myArray.GetSearchResults();
+            ArrayList<myArray> searchResults2 = new myArray().GetSearchResults();
             ArrayList<myArray> results = new ArrayList<myArray>();
             for(myArray d : searchResults2){
                 String article = (d.getArticle()).toLowerCase();

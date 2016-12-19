@@ -8,7 +8,7 @@
     tools:context="zep.daan.myapplication.NavigationDrawer">
 
     <include layout="@layout/content_navigation_drawer"
-        android:id="@+id/include">
+        android:id="@+id/include"/>
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

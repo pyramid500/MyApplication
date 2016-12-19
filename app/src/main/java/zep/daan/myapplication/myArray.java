@@ -49,7 +49,37 @@ public class myArray {
     public int getImage() {return image;}
 
 
-    public static ArrayList<myArray> GetSearchResults(){
+
+    /*
+    SQLiteDatabase mDataBase = DatabaseHelper.getInstance(context).getWritableDatabase();
+    */
+
+
+
+    public ArrayList<myArray> GetSearchResults(){
+
+
+
+
+        /*
+        ArrayList<myArray> results = new ArrayList<myArray>();
+
+        Cursor res = myDb.getAllData();
+        while( res.moveToNext()){
+            myArray sr = new myArray();
+            sr.setHeadline(res.getString(1));
+            sr.setArticle(res.getString(2));
+            sr.setSection(res.getString(3));
+            sr.setFrontpage(res.getString(4));
+            sr.setDate(res.getString(5));
+            sr.setImage(R.drawable.image2);
+            results.add(sr);
+        }
+        return results;
+        */
+
+
+
         ArrayList<myArray> results = new ArrayList<myArray>();
         myArray sr = new myArray();
         sr.setHeadline("Donald Trump");
