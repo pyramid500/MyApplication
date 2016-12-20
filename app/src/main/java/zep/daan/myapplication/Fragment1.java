@@ -27,7 +27,7 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<myArray> searchResults = new myArray().GetSearchResults();
+        ArrayList<myArray> searchResults = new myArray().GetSearchResults(getContext());
 
         final ListView lv = getListView();
         lv.setAdapter(new MyCustomBaseAdapter(getActivity(), searchResults));

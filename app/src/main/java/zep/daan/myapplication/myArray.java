@@ -1,5 +1,11 @@
 package zep.daan.myapplication;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -50,36 +56,45 @@ public class myArray {
 
 
 
-    /*
-    SQLiteDatabase mDataBase = DatabaseHelper.getInstance(context).getWritableDatabase();
-    */
 
 
 
-    public ArrayList<myArray> GetSearchResults(){
+    public ArrayList<myArray> GetSearchResults(Context context){
+        DataBaseHelper myDbHelper;
+        myDbHelper = new DataBaseHelper(context);
+        try {
+            myDbHelper.createDataBase();
+        } catch (IOException ioe) {
+            throw new Error("Unable to create database");
+        }
+        try {
+            myDbHelper.openDataBase();
+        }catch(SQLiteException sqle){
+            throw sqle;
+        }
+        SQLiteDatabase database = new DataBaseHelper(context).getReadableDatabase();
+        String select = "Select * From articles";
+        Cursor cursor = database.query("articlelist", null, null, null, null, null, null);
 
 
 
-
-        /*
         ArrayList<myArray> results = new ArrayList<myArray>();
 
-        Cursor res = myDb.getAllData();
-        while( res.moveToNext()){
+        while( cursor.moveToNext()){
             myArray sr = new myArray();
-            sr.setHeadline(res.getString(1));
-            sr.setArticle(res.getString(2));
-            sr.setSection(res.getString(3));
-            sr.setFrontpage(res.getString(4));
-            sr.setDate(res.getString(5));
+            sr.setSection(cursor.getString(1));
+            sr.setFrontpage(cursor.getString(2));
+            sr.setHeadline(cursor.getString(3));
+            sr.setDate(cursor.getString(4));
+            sr.setArticle(cursor.getString(5));
             sr.setImage(R.drawable.image2);
             results.add(sr);
         }
         return results;
-        */
 
 
 
+    /*
         ArrayList<myArray> results = new ArrayList<myArray>();
         myArray sr = new myArray();
         sr.setHeadline("Donald Trump");
@@ -172,6 +187,7 @@ public class myArray {
         results.add(sr);
 
         return results;
+        */
     }
 
 }
