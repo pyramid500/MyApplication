@@ -59,7 +59,7 @@ public class myArray {
 
 
 
-    public ArrayList<myArray> GetSearchResults(Context context){
+    public ArrayList<myArray> GetSearchResults(Context context, String filter){
         DataBaseHelper myDbHelper;
         myDbHelper = new DataBaseHelper(context);
         try {
@@ -72,11 +72,15 @@ public class myArray {
         }catch(SQLiteException sqle){
             throw sqle;
         }
+        String whereClause;
         SQLiteDatabase database = new DataBaseHelper(context).getReadableDatabase();
-        String select = "Select * From articles";
-        Cursor cursor = database.query("articlelist", null, null, null, null, null, null);
-
-
+        if(filter == "front"){
+            whereClause = "`Frontpage` = 'yes'";
+        }
+        else{
+            whereClause = "`Section` = "+ "'"+filter+"'";
+        }
+        Cursor cursor = database.query("articlelist", null, whereClause, null, null, null, null);
 
         ArrayList<myArray> results = new ArrayList<myArray>();
 

@@ -12,10 +12,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 /**
- * Created by daan on 12/4/16.
+ * Created by daan on 12/21/16.
  */
 
-public class Fragment1 extends ListFragment implements AdapterView.OnItemClickListener {
+public class BinnenlandFragment extends ListFragment implements AdapterView.OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<myArray> searchResults = new myArray().GetSearchResults(getContext());
+        ArrayList<myArray> searchResults = new myArray().GetSearchResults(getContext(), "binnenland");
 
         final ListView lv = getListView();
         lv.setAdapter(new MyCustomBaseAdapter(getActivity(), searchResults));
@@ -37,7 +37,7 @@ public class Fragment1 extends ListFragment implements AdapterView.OnItemClickLi
 
 
 
-    public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent infointent = new Intent(getActivity(), InfoPage.class);
         final ListView lv = getListView();
         Object o = lv.getItemAtPosition(position);

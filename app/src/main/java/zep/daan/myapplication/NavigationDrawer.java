@@ -97,9 +97,9 @@ public class NavigationDrawer extends AppCompatActivity
 
         if (id == R.id.nav_voorpagina) {
             // Handle the camera action
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new Fragment1()).commit();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new FrontpageFragment()).commit();
         } else if (id == R.id.nav_binnenland) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new BinnenlandFragment()).commit();
         } else if (id == R.id.nav_buitenland) {
 
         } else if (id == R.id.nav_politiek) {
