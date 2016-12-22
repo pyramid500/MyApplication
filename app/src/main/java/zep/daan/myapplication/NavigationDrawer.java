@@ -101,15 +101,17 @@ public class NavigationDrawer extends AppCompatActivity
         } else if (id == R.id.nav_binnenland) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new BinnenlandFragment()).commit();
         } else if (id == R.id.nav_buitenland) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new BuitenlandFragment()).commit();
         } else if (id == R.id.nav_politiek) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new PolitiekFragment()).commit();
         } else if (id == R.id.nav_economie) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new EconomieFragment()).commit();
         } else if (id == R.id.nav_technologie) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new TechnologieFragment()).commit();
         } else if (id == R.id.nav_entertainment) {
-
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new EntertainmentFragment()).commit();
+        }else if (id == R.id.nav_sport) {
+            fragmentManager.beginTransaction().replace(R.id.content_frame, new SportFragment()).commit();
         } else if (id == R.id.instellingen) {
             Intent instellingenIntent = new Intent(this, SettingsActivity.class);
             startActivity(instellingenIntent);

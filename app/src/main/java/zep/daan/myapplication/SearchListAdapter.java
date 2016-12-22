@@ -1,6 +1,8 @@
 package zep.daan.myapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +14,12 @@ import org.joda.time.Days;
 import org.joda.time.Hours;
 import org.joda.time.format.DateTimeFormat;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 import static zep.daan.myapplication.R.id.imageView;
 
 public class SearchListAdapter extends android.widget.BaseAdapter {
-
-
     private static ArrayList<myArray> searchArrayList;
 
     private LayoutInflater mInflater;
@@ -74,7 +75,7 @@ public class SearchListAdapter extends android.widget.BaseAdapter {
         }
         else if (days<1){
             int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
-            dateResult = Integer.toString(hours) + " Uur Geleden";
+            dateResult = Integer.toString(hours) + " uur geleden";
         }
 
 
@@ -83,7 +84,9 @@ public class SearchListAdapter extends android.widget.BaseAdapter {
 
 
         holder.txtName.setText(searchArrayList.get(position).getHeadline());
-        holder.image.setImageResource(searchArrayList.get(position).getImage());
+        ByteArrayInputStream imageStream = new ByteArrayInputStream(searchArrayList.get(position).getImage());
+        Bitmap theImage= BitmapFactory.decodeStream(imageStream);
+        holder.image.setImageBitmap(theImage);
         holder.time.setText(dateResult);
         return convertView;
     }

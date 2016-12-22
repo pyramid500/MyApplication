@@ -19,7 +19,7 @@ public class myArray {
     private String section = "";
     private String frontpage = "";
     private String date = "";
-    private Integer image = 0;
+    private byte[] image = null;
     public void setHeadline(String headline) {
         this.headline = headline;
     }
@@ -44,15 +44,13 @@ public class myArray {
     public void setFrontpage(String frontpage) {
         this.frontpage = frontpage;
     }
-    public String getFrontpage() {
-        return frontpage;
-    }
+    public String getFrontpage() {return frontpage;}
 
     public void setDate(String date) {this.date = date;}
     public String getDate() {return date;}
 
-    public void setImage(Integer image){this.image = image;}
-    public int getImage() {return image;}
+    public void setImage(byte[] image){this.image = image;}
+    public byte[] getImage() {return image;}
 
 
 
@@ -77,8 +75,11 @@ public class myArray {
         if(filter == "front"){
             whereClause = "`Frontpage` = 'yes'";
         }
+        else if(filter ==null){
+            whereClause = null;
+        }
         else{
-            whereClause = "`Section` = "+ "'"+filter+"'";
+            whereClause = "`Section` LIKE '"+ filter+"'";
         }
         Cursor cursor = database.query("articlelist", null, whereClause, null, null, null, null);
 
@@ -91,9 +92,12 @@ public class myArray {
             sr.setHeadline(cursor.getString(3));
             sr.setDate(cursor.getString(4));
             sr.setArticle(cursor.getString(5));
-            sr.setImage(R.drawable.image2);
+            byte[] imageblob = cursor.getBlob(6);
+            sr.setImage(imageblob);
             results.add(sr);
         }
+        cursor.close();
+        database.close();
         return results;
 
 

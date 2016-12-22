@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by daan on 12/21/16.
  */
 
-public class BinnenlandFragment extends ListFragment implements AdapterView.OnItemClickListener {
+public class EntertainmentFragment extends ListFragment implements AdapterView.OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class BinnenlandFragment extends ListFragment implements AdapterView.OnIt
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        ArrayList<myArray> searchResults = new myArray().GetSearchResults(getContext(), "binnenland");
+        ArrayList<myArray> searchResults = new myArray().GetSearchResults(getContext(), "entertainment");
         final ListView lv = getListView();
         lv.setAdapter(new MyCustomBaseAdapter(getActivity(), searchResults));
         getListView().setOnItemClickListener(this);
