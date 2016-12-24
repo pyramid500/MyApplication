@@ -47,6 +47,8 @@ public class EconomieFragment extends ListFragment implements AdapterView.OnItem
         infointent.putExtra("article", article);
         String section = fullObject.getSection();
         infointent.putExtra("section", section);
+        byte[] image = fullObject.getImage();
+        infointent.putExtra("image", image);
         startActivity(infointent);
     }
 

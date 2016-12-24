@@ -1,13 +1,18 @@
 package zep.daan.myapplication;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.ByteArrayInputStream;
 
 import static zep.daan.myapplication.R.id.phonenr;
 
@@ -41,6 +46,11 @@ public class InfoPage extends AppCompatActivity {
         text1.setText(article);
         TextView text2 = (TextView) findViewById(phonenr);
         text2.setText(section);
+        ImageView imageView = (ImageView) findViewById(R.id.articleimage);
+
+        ByteArrayInputStream imageStream = new ByteArrayInputStream(infointent.getByteArrayExtra("image"));
+        Bitmap theImage= BitmapFactory.decodeStream(imageStream);
+        imageView.setImageBitmap(theImage);
     }
     public boolean onCreateOptionsMenu(Menu menu)
     {
