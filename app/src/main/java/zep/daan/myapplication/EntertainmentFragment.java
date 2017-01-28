@@ -20,6 +20,7 @@ public class EntertainmentFragment extends ListFragment implements AdapterView.O
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1, container, false);
+        setRetainInstance(true);
         return view;
     }
 

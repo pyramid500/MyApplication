@@ -20,6 +20,7 @@ public class SportFragment extends ListFragment implements AdapterView.OnItemCli
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1, container, false);
+        setRetainInstance(true);
         return view;
     }
 
