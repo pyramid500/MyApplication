@@ -104,20 +104,28 @@ public class NavigationDrawer extends AppCompatActivity
         if (id == R.id.nav_voorpagina) {
             // Handle the camera action
             fragmentManager.beginTransaction().replace(R.id.content_frame, new FrontpageFragment()).commit();
+            getSupportActionBar().setTitle("Voorpagina");
         } else if (id == R.id.nav_binnenland) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new BinnenlandFragment()).commit();
+            getSupportActionBar().setTitle("Binnenland");
         } else if (id == R.id.nav_buitenland) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new BuitenlandFragment()).commit();
+            getSupportActionBar().setTitle("Buitenland");
         } else if (id == R.id.nav_politiek) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new PolitiekFragment()).commit();
+            getSupportActionBar().setTitle("Politiek");
         } else if (id == R.id.nav_economie) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new EconomieFragment()).commit();
+            getSupportActionBar().setTitle("Economie");
         } else if (id == R.id.nav_technologie) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new TechnologieFragment()).commit();
+            getSupportActionBar().setTitle("Technologie");
         } else if (id == R.id.nav_entertainment) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new EntertainmentFragment()).commit();
+            getSupportActionBar().setTitle("Entertainment");
         }else if (id == R.id.nav_sport) {
             fragmentManager.beginTransaction().replace(R.id.content_frame, new SportFragment()).commit();
+            getSupportActionBar().setTitle("Sport");
         } else if (id == R.id.instellingen) {
             Intent instellingenIntent = new Intent(this, SettingsActivity.class);
             startActivity(instellingenIntent);
