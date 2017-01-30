@@ -7,7 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Nieuws"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".InfoPage">
         <meta-data
@@ -15,8 +15,7 @@
             android:value="zep.daan.myapplication.NavigationDrawer" />
             </activity>
         <activity
-            android:name=".NavigationDrawer"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:name=".NavigationDrawer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,8 +27,7 @@
         </activity>
         <activity
             android:name=".SearchResults"
-            android:label="@string/title_activity_search_results"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:label="@string/title_activity_search_results">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
