@@ -5,42 +5,42 @@
             android:id="@+id/onderwerpen">
         <item
             android:id="@+id/nav_voorpagina"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Voorpagina" />
         <item
             android:id="@+id/nav_binnenland"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_location_city_black_24dp"
             android:title="Binnenland" />
         <item
             android:id="@+id/nav_buitenland"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_public_black_24dp"
             android:title="Buitenland" />
         <item
             android:id="@+id/nav_politiek"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_account_balance_black_24dp"
             android:title="Politiek" />
         <item
             android:id="@+id/nav_economie"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_euro_symbol_black_24px"
             android:title="Economie" />
         <item
             android:id="@+id/nav_technologie"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_desktop_windows_black_24dp"
             android:title="Technologie" />
         <item
             android:id="@+id/nav_entertainment"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_movie_black_24dp"
             android:title="Entertaiment" />
         <item
             android:id="@+id/nav_sport"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_directions_run_black_24dp"
             android:title="Sport" />
     </group>
 
     <group android:id="@+id/instellingengroup">
         <item
             android:id="@+id/instellingen"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_settings_black_24dp"
             android:title="Instellingen" />
     </group>
 
