@@ -68,8 +68,9 @@ public class NavigationDrawer extends AppCompatActivity
                 (SearchView) menu.findItem(search).getActionView();
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
-        searchView.setSubmitButtonEnabled(true);
-        searchView.setIconifiedByDefault(false);// Do not iconify the widget; expand it by default
+        searchView.setQueryHint("Zoek een artikel");
+        searchView.setSubmitButtonEnabled(false);
+        searchView.setIconifiedByDefault(true);// Do not iconify the widget; expand it by default
 
         return true;
     }
