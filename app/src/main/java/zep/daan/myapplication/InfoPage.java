@@ -13,10 +13,9 @@ import android.view.MenuInflater;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.MenuItem;
 
 import java.io.ByteArrayInputStream;
-
-import static zep.daan.myapplication.R.id.phonenr;
 
 public class InfoPage extends AppCompatActivity {
     @Override
@@ -44,25 +43,48 @@ public class InfoPage extends AppCompatActivity {
 
         String headline = infointent.getStringExtra("headline");
         String article = infointent.getStringExtra("article");
+        String date = infointent.getStringExtra("date");
         String section = infointent.getStringExtra("section");
         String hsection = section.substring(0, 1).toUpperCase() + section.substring(1);
-        TextView text = (TextView) findViewById(R.id.uname);
+        TextView text = (TextView) findViewById(R.id.headline);
         text.setText(headline);
-        TextView text1 = (TextView) findViewById(R.id.city_state);
-        text1.setText(article);
-        TextView text2 = (TextView) findViewById(phonenr);
-        text2.setText(hsection);
+        TextView text1 = (TextView) findViewById(R.id.date);
+        text1.setText(date);
+        TextView text2 = (TextView) findViewById(R.id.article);
+        text2.setText(article);
         ImageView imageView = (ImageView) findViewById(R.id.articleimage);
         getSupportActionBar().setTitle(hsection);
         ByteArrayInputStream imageStream = new ByteArrayInputStream(infointent.getByteArrayExtra("image"));
         Bitmap theImage= BitmapFactory.decodeStream(imageStream);
         imageView.setImageBitmap(theImage);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.action_share:
+                Intent infointent = getIntent();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, infointent.getStringExtra("headline") + "\n \n" + infointent.getStringExtra("article"));
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_article, menu);
         return true;
     }
+
+
+
 
 }

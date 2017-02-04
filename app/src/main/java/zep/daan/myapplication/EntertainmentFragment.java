@@ -34,23 +34,27 @@ public class EntertainmentFragment extends ListFragment implements AdapterView.O
         getListView().setOnItemClickListener(this);
     }
 
-
-
-
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent infointent = new Intent(getActivity(), InfoPage.class);
         final ListView lv = getListView();
         Object o = lv.getItemAtPosition(position);
         myArray fullObject = (myArray) o;
-        String headline = fullObject.getHeadline();
-        infointent.putExtra("headline", headline);
-        String article = fullObject.getArticle();
-        infointent.putExtra("article", article);
+
         String section = fullObject.getSection();
         infointent.putExtra("section", section);
+
         byte[] image = fullObject.getImage();
         infointent.putExtra("image", image);
+
+        String headline = fullObject.getHeadline();
+        infointent.putExtra("headline", headline);
+
+        String date = fullObject.getDate();
+        infointent.putExtra("date", date);
+
+        String article = fullObject.getArticle();
+        infointent.putExtra("article", article);
+
         startActivity(infointent);
     }
-
 }
