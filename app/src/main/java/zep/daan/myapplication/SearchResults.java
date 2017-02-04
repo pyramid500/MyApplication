@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -41,6 +42,32 @@ public class SearchResults extends Activity {
                 if(!results.isEmpty()) {
                     ListView listView1 = (ListView) findViewById(R.id.search_list);
                     listView1.setAdapter(new SearchListAdapter(this, results));
+                    listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent infointent = new Intent(SearchResults.this, InfoPage.class);
+                            final ListView lv = (ListView) findViewById(R.id.search_list);
+                            Object o = lv.getItemAtPosition(position);
+                            myArray fullObject = (myArray) o;
+
+                            String section = fullObject.getSection();
+                            infointent.putExtra("section", section);
+
+                            byte[] image = fullObject.getImage();
+                            infointent.putExtra("image", image);
+
+                            String headline = fullObject.getHeadline();
+                            infointent.putExtra("headline", headline);
+
+                            String date = fullObject.getDate();
+                            infointent.putExtra("date", date);
+
+                            String article = fullObject.getArticle();
+                            infointent.putExtra("article", article);
+
+                            startActivity(infointent);
+                        }
+                    });
                 }
                 else{
                     View Layout =  findViewById(R.id.content_navigation_drawer);
@@ -57,4 +84,5 @@ public class SearchResults extends Activity {
 
         }
     }
+
 }
