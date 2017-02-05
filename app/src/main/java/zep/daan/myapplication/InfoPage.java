@@ -43,13 +43,18 @@ public class InfoPage extends AppCompatActivity {
 
         String headline = infointent.getStringExtra("headline");
         String article = infointent.getStringExtra("article");
+
         String date = infointent.getStringExtra("date");
+        String articleTime = date.split("\\s")[1].split("\\.")[0];
+        String articleDate = date.substring(0,10);
+        String articleDateTime = articleDate + ", " + articleTime;
+
         String section = infointent.getStringExtra("section");
         String hsection = section.substring(0, 1).toUpperCase() + section.substring(1);
         TextView text = (TextView) findViewById(R.id.headline);
         text.setText(headline);
         TextView text1 = (TextView) findViewById(R.id.date);
-        text1.setText(date);
+        text1.setText(articleDateTime);
         TextView text2 = (TextView) findViewById(R.id.article);
         text2.setText(article);
         ImageView imageView = (ImageView) findViewById(R.id.articleimage);

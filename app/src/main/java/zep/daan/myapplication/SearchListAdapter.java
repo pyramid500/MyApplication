@@ -54,34 +54,26 @@ public class SearchListAdapter extends android.widget.BaseAdapter {
             holder = (SearchListAdapter.ViewHolder) convertView.getTag();
         }
 
-
-
-
         String someDate = searchArrayList.get(position).getDate();
+        String articleTime = someDate.split("\\s")[1].split("\\.")[0];
+        String articleDate = someDate.substring(0,10);
+        String articleDateTime = articleDate + ", " + articleTime;
 
         String dateResult;
         DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy kk:mm"));
         DateTime presentTime = DateTime.now();
-        dateResult ="Error";
+        dateResult = "Error";
         int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
-        if(days>2) {
-            dateResult = someDate;
-        }
-        else if(days == 2){
-            dateResult = "Eergisteren";
-        }
-        else if(days == 1){
-            dateResult = "Gisteren";
-        }
-        else if (days<1){
+        if (days > 2) {
+            dateResult = articleDateTime;
+        } else if (days == 2) {
+            dateResult = "Eergisteren, " + articleTime;
+        } else if (days == 1) {
+            dateResult = "Gisteren, " + articleTime;
+        } else if (days < 1) {
             int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
             dateResult = Integer.toString(hours) + " uur geleden";
         }
-
-
-
-
-
 
         holder.txtName.setText(searchArrayList.get(position).getHeadline());
         ByteArrayInputStream imageStream = new ByteArrayInputStream(searchArrayList.get(position).getImage());

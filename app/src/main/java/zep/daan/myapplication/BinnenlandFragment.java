@@ -107,8 +107,10 @@ public class BinnenlandFragment extends ListFragment implements AdapterView.OnIt
                 holder = (MyCustomBaseAdapter.ViewHolder) convertView.getTag();
             }
 
-
             String someDate = searchArrayList.get(position).getDate();
+            String articleTime = someDate.split("\\s")[1].split("\\.")[0];
+            String articleDate = someDate.substring(0,10);
+            String articleDateTime = articleDate + ", " + articleTime;
 
             String dateResult;
             DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy kk:mm"));
@@ -116,16 +118,15 @@ public class BinnenlandFragment extends ListFragment implements AdapterView.OnIt
             dateResult = "Error";
             int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
             if (days > 2) {
-                dateResult = someDate;
+                dateResult = articleDateTime;
             } else if (days == 2) {
-                dateResult = "Eergisteren";
+                dateResult = "Eergisteren, " + articleTime;
             } else if (days == 1) {
-                dateResult = "Gisteren";
+                dateResult = "Gisteren, " + articleTime;
             } else if (days < 1) {
                 int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
                 dateResult = Integer.toString(hours) + " uur geleden";
             }
-
 
             holder.txtName.setText(searchArrayList.get(position).getHeadline());
             ByteArrayInputStream imageStream = new ByteArrayInputStream(searchArrayList.get(position).getImage());
