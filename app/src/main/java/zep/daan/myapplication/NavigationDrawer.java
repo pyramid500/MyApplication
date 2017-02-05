@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import static zep.daan.myapplication.R.id.search;
+import static zep.daan.myapplication.R.id.toolbar;
 
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,8 +28,8 @@ public class NavigationDrawer extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Voorpagina");
         setSupportActionBar(toolbar);
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -41,6 +42,7 @@ public class NavigationDrawer extends AppCompatActivity
         if (savedInstanceState == null) {
             navigationView.getMenu().performIdentifierAction(R.id.nav_voorpagina, 0);
             navigationView.getMenu().getItem(0).setChecked(true);
+
 
         }
 
@@ -60,7 +62,7 @@ public class NavigationDrawer extends AppCompatActivity
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                         toolbar.setTitle("Headlines");
+                         toolbar.setTitle("Voorpagina");
                          navigationView.getMenu().getItem(0).setChecked(true);
                         return;
                     case 1:
@@ -153,13 +155,14 @@ public class NavigationDrawer extends AppCompatActivity
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_voorpagina) {
             // Handle the camera action
             pager.setCurrentItem(0);
+            toolbar.setTitle("Voorpagina");
         } else if (id == R.id.nav_binnenland) {
             pager.setCurrentItem(1);
         } else if (id == R.id.nav_buitenland) {

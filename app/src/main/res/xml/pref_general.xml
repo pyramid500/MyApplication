@@ -1,4 +1,6 @@
-<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+
+<PreferenceScreen
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
         android:defaultValue="true"
@@ -21,6 +23,12 @@
         android:dependency="notifications_new_message"
         android:key="notifications_new_message_vibrate"
         android:title="@string/pref_title_vibrate"
+        android:thumbTint="@color/colorAccent"/>
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="article_text_size"
+        android:title="@string/article_text_size"
         android:thumbTint="@color/colorAccent"/>
 
 

@@ -4,25 +4,38 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class SearchResults extends Activity {
+public class SearchResults extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        // Get a support ActionBar corresponding to this toolbar
+        ActionBar ab = getSupportActionBar();
+
+        // Enable the Up button
+        ab.setDisplayHomeAsUpEnabled(true);
+
         // Get the intent, verify the action and get the query
         Intent intent = getIntent().setData(null);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+            getSupportActionBar().setTitle(query);
             ArrayList<myArray> searchResults2 = new myArray().GetSearchResults(getApplicationContext(), null);
             ArrayList<myArray> results = new ArrayList<myArray>();
             for(myArray d : searchResults2){
@@ -71,13 +84,14 @@ public class SearchResults extends Activity {
                 }
                 else{
                     View Layout =  findViewById(R.id.content_navigation_drawer);
-                    //LinearLayout layout = (LinearLayout) findViewById(R.id.info);
+                    LinearLayout layout = (LinearLayout) findViewById(R.id.content_search_results);
 
                     TextView valueTV = new TextView(this);
                     valueTV.setText("No Results");
-                    valueTV.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+                    valueTV.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-                    ((RelativeLayout) Layout).addView(valueTV);
+                    ((LinearLayout) Layout).addView(valueTV);
+                    return;
 
                 }
             }
