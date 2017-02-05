@@ -3,11 +3,12 @@ package zep.daan.myapplication;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,6 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowManager;
 
 import static zep.daan.myapplication.R.id.search;
 
@@ -26,7 +26,7 @@ public class NavigationDrawer extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_drawer);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
@@ -36,13 +36,68 @@ public class NavigationDrawer extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         if (savedInstanceState == null) {
             navigationView.getMenu().performIdentifierAction(R.id.nav_voorpagina, 0);
             navigationView.getMenu().getItem(0).setChecked(true);
 
         }
+
+
+
+
+        ViewPager pager = (ViewPager) findViewById(R.id.content_frame);
+        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        pager.setOffscreenPageLimit(3);
+
+        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                         toolbar.setTitle("Headlines");
+                         navigationView.getMenu().getItem(0).setChecked(true);
+                        return;
+                    case 1:
+                        toolbar.setTitle("Binnenland");
+                        navigationView.getMenu().getItem(1).setChecked(true);
+                        return;
+                    case 2:
+                        toolbar.setTitle("Buitenland");
+                        navigationView.getMenu().getItem(2).setChecked(true);
+                        return;
+                    case 3:
+                        toolbar.setTitle("Politiek");
+                        navigationView.getMenu().getItem(3).setChecked(true);
+                        return;
+                    case 4:
+                        toolbar.setTitle("Economie");
+                        navigationView.getMenu().getItem(4).setChecked(true);
+                        return;
+                    case 5:
+                        toolbar.setTitle("Technologie");
+                        navigationView.getMenu().getItem(5).setChecked(true);
+                        return;
+                    case 6:
+                        toolbar.setTitle("Entertainment");
+                        navigationView.getMenu().getItem(6).setChecked(true);
+                        return;
+                    case 7:
+                        toolbar.setTitle("Sport");
+                        navigationView.getMenu().getItem(7).setChecked(true);
+                        return;
+                }
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
     }
 
 
@@ -94,35 +149,31 @@ public class NavigationDrawer extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        ViewPager pager = (ViewPager) findViewById(R.id.content_frame);
+        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getSupportFragmentManager();
 
         if (id == R.id.nav_voorpagina) {
             // Handle the camera action
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new FrontpageFragment()).commit();
-            getSupportActionBar().setTitle("Voorpagina");
+            pager.setCurrentItem(0);
         } else if (id == R.id.nav_binnenland) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new BinnenlandFragment()).commit();
-            getSupportActionBar().setTitle("Binnenland");
+            pager.setCurrentItem(1);
         } else if (id == R.id.nav_buitenland) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new BuitenlandFragment()).commit();
-            getSupportActionBar().setTitle("Buitenland");
+            pager.setCurrentItem(2);
         } else if (id == R.id.nav_politiek) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new PolitiekFragment()).commit();
-            getSupportActionBar().setTitle("Politiek");
+            pager.setCurrentItem(3);
         } else if (id == R.id.nav_economie) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new EconomieFragment()).commit();
-            getSupportActionBar().setTitle("Economie");
+            pager.setCurrentItem(4);
         } else if (id == R.id.nav_technologie) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new TechnologieFragment()).commit();
-            getSupportActionBar().setTitle("Technologie");
+            pager.setCurrentItem(5);
         } else if (id == R.id.nav_entertainment) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new EntertainmentFragment()).commit();
-            getSupportActionBar().setTitle("Entertainment");
+            pager.setCurrentItem(6);
         }else if (id == R.id.nav_sport) {
-            fragmentManager.beginTransaction().replace(R.id.content_frame, new SportFragment()).commit();
-            getSupportActionBar().setTitle("Sport");
+            pager.setCurrentItem(7);
         } else if (id == R.id.instellingen) {
             Intent instellingenIntent = new Intent(this, SettingsActivity.class);
             startActivity(instellingenIntent);
@@ -133,4 +184,44 @@ public class NavigationDrawer extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public android.support.v4.app.Fragment getItem(int pos) {
+
+            switch (pos) {
+                case 0:
+                    return new FrontpageFragment();
+                case 1:
+                    return new BinnenlandFragment();
+                case 2:
+                    return new BuitenlandFragment();
+                case 3:
+                    return new PolitiekFragment();
+                case 4:
+                    return new EconomieFragment();
+                case 5:
+                    return new TechnologieFragment();
+                case 6:
+                    return new EntertainmentFragment();
+                case 7:
+                    return new SportFragment();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 8;
+        }
+
+    }
+
+
+
 }

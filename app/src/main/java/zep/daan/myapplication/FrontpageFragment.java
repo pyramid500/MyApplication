@@ -1,15 +1,28 @@
 package zep.daan.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Hours;
+import org.joda.time.format.DateTimeFormat;
+
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+
+import static zep.daan.myapplication.R.id.imageView;
 
 /**
  * Created by daan on 12/4/16.
@@ -57,5 +70,77 @@ public class FrontpageFragment extends ListFragment implements AdapterView.OnIte
         infointent.putExtra("article", article);
 
         startActivity(infointent);
+    }
+    public class MyCustomBaseAdapter extends android.widget.BaseAdapter {
+
+        private ArrayList<myArray> searchArrayList;
+
+        private LayoutInflater mInflater;
+
+        public MyCustomBaseAdapter(Context context, ArrayList<myArray> results) {
+            searchArrayList = results;
+            mInflater = LayoutInflater.from(context);
+        }
+
+        public int getCount() {
+            return searchArrayList.size();
+        }
+
+        public Object getItem(int position) {
+            return searchArrayList.get(position);
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            FrontpageFragment.MyCustomBaseAdapter.ViewHolder holder;
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.list_item, null);
+                holder = new MyCustomBaseAdapter.ViewHolder();
+                holder.txtName = (TextView) convertView.findViewById(R.id.name);
+                holder.image = (ImageView) convertView.findViewById(imageView);
+                holder.time = (TextView) convertView.findViewById(R.id.time);
+                convertView.setTag(holder);
+            } else {
+                holder = (FrontpageFragment.MyCustomBaseAdapter.ViewHolder) convertView.getTag();
+            }
+
+
+            String someDate = searchArrayList.get(position).getDate();
+
+            String dateResult;
+            DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy kk:mm"));
+            DateTime presentTime = DateTime.now();
+            dateResult = "Error";
+            int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
+            if (days > 2) {
+                dateResult = someDate;
+            } else if (days == 2) {
+                dateResult = "Eergisteren";
+            } else if (days == 1) {
+                dateResult = "Gisteren";
+            } else if (days < 1) {
+                int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
+                dateResult = Integer.toString(hours) + " uur geleden";
+            }
+
+
+            holder.txtName.setText(searchArrayList.get(position).getHeadline());
+            ByteArrayInputStream imageStream = new ByteArrayInputStream(searchArrayList.get(position).getImage());
+            Bitmap theImage = BitmapFactory.decodeStream(imageStream);
+            holder.image.setImageBitmap(theImage);
+            holder.time.setText(dateResult);
+            return convertView;
+        }
+
+        class ViewHolder {
+            TextView txtName;
+            TextView time;
+            ImageView image;
+
+        }
+
     }
 }

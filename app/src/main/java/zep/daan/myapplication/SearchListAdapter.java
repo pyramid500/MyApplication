@@ -42,16 +42,16 @@ public class SearchListAdapter extends android.widget.BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        MyCustomBaseAdapter.ViewHolder holder;
+        SearchListAdapter.ViewHolder holder;
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.list_item, null);
-            holder = new MyCustomBaseAdapter.ViewHolder();
+            holder = new SearchListAdapter.ViewHolder();
             holder.txtName = (TextView) convertView.findViewById(R.id.name);
             holder.image = (ImageView) convertView.findViewById(imageView);
             holder.time = (TextView) convertView.findViewById(R.id.time);
             convertView.setTag(holder);
         } else {
-            holder = (MyCustomBaseAdapter.ViewHolder) convertView.getTag();
+            holder = (SearchListAdapter.ViewHolder) convertView.getTag();
         }
 
 
