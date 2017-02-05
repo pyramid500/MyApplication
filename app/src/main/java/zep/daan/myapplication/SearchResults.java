@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -35,7 +36,7 @@ public class SearchResults extends AppCompatActivity {
         Intent intent = getIntent().setData(null);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            getSupportActionBar().setTitle(query);
+            getSupportActionBar().setTitle("Zoekresultaten voor '" + query + "'");
             ArrayList<myArray> searchResults2 = new myArray().GetSearchResults(getApplicationContext(), null);
             ArrayList<myArray> results = new ArrayList<myArray>();
             for(myArray d : searchResults2){
@@ -86,11 +87,10 @@ public class SearchResults extends AppCompatActivity {
                     View Layout =  findViewById(R.id.content_navigation_drawer);
                     LinearLayout layout = (LinearLayout) findViewById(R.id.content_search_results);
 
-                    TextView valueTV = new TextView(this);
-                    valueTV.setText("No Results");
-                    valueTV.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    TextView noResult = (TextView) findViewById(R.id.no_result);
+                    noResult.setText("Geen resultaten gevonden voor '" + query + "'.");
 
-                    ((LinearLayout) Layout).addView(valueTV);
+                    getSupportActionBar().setTitle("Geen zoekresultaten");
                     return;
 
                 }
