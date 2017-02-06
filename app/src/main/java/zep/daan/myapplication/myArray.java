@@ -86,22 +86,27 @@ public class myArray {
             whereClause = "`Section` LIKE '"+ filter+"'";
         }
         Cursor cursor = database.query("articlelist", null, whereClause, null, null, null, "datetime(`Date`) DESC");
-        ArrayList<myArray> results = new ArrayList<myArray>();
+        try {
+            ArrayList<myArray> results = new ArrayList<myArray>();
 
-        while( cursor.moveToNext()){
-            myArray sr = new myArray();
-            sr.setSection(cursor.getString(1));
-            sr.setFrontpage(cursor.getString(2));
-            sr.setHeadline(cursor.getString(3));
-            sr.setDate(cursor.getString(4));
-            sr.setArticle(cursor.getString(5));
-            byte[] imageblob = cursor.getBlob(6);
-            sr.setImage(imageblob);
-            results.add(sr);
+            while (cursor.moveToNext()) {
+                myArray sr = new myArray();
+                sr.setSection(cursor.getString(1));
+                sr.setFrontpage(cursor.getString(2));
+                sr.setHeadline(cursor.getString(3));
+                sr.setDate(cursor.getString(4));
+                sr.setArticle(cursor.getString(5));
+                byte[] imageblob = cursor.getBlob(6);
+                sr.setImage(imageblob);
+                results.add(sr);
+            }
+            return results;
         }
-        cursor.close();
-        database.close();
-        return results;
+        finally {
+            cursor.close();
+            database.close();
+            myDbHelper.close();
+        }
     }
 
 }

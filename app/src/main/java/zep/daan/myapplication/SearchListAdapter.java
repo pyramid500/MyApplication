@@ -71,6 +71,8 @@ public class SearchListAdapter extends android.widget.BaseAdapter {
         }
 
         holder.txtName.setText(searchArrayList.get(position).getHeadline());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
         ByteArrayInputStream imageStream = new ByteArrayInputStream(searchArrayList.get(position).getImage());
         Bitmap theImage= BitmapFactory.decodeStream(imageStream);
         holder.image.setImageBitmap(theImage);
