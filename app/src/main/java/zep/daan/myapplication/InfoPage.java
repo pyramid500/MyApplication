@@ -83,7 +83,7 @@ public class InfoPage extends AppCompatActivity {
                 Intent infointent = getIntent();
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, infointent.getStringExtra("headline") + "\n \n" + infointent.getStringExtra("article"));
+                sendIntent.putExtra(Intent.EXTRA_TEXT, infointent.getStringExtra("headline") + "\n \n" + infointent.getStringExtra("article") + "\n \n" + "Via Flash Nieuws.");
                 sendIntent.setType("text/plain");
                 startActivity(sendIntent);
         }
