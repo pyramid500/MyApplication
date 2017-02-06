@@ -42,8 +42,7 @@ public class NavigationDrawer extends AppCompatActivity
         if (savedInstanceState == null) {
             navigationView.getMenu().performIdentifierAction(R.id.nav_voorpagina, 0);
             navigationView.getMenu().getItem(0).setChecked(true);
-
-
+            toolbar.setTitle("Voorpagina");
         }
 
 
