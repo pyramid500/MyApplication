@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -151,8 +151,7 @@ public class NavigationDrawer extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         ViewPager pager = (ViewPager) findViewById(R.id.content_frame);
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -193,7 +192,7 @@ public class NavigationDrawer extends AppCompatActivity
         return true;
     }
 
-    private class MyPagerAdapter extends FragmentPagerAdapter {
+    private class MyPagerAdapter extends FragmentStatePagerAdapter {
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -201,9 +200,11 @@ public class NavigationDrawer extends AppCompatActivity
         @Override
         public android.support.v4.app.Fragment getItem(int pos) {
             final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             switch (pos) {
                 case 0:
                     toolbar.setTitle("Voorpagina");
+                    navigationView.getMenu().getItem(0).setChecked(true);
                     return new FrontpageFragment();
                 case 1:
                     return new BinnenlandFragment();

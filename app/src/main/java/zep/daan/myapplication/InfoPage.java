@@ -44,7 +44,7 @@ public class InfoPage extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean textsize = prefs.getBoolean("article_text_size", true);
+        Boolean textsize = prefs.getBoolean("article_text_size", false);
         if (textsize == true){
             TextView article = (TextView) findViewById(R.id.article);
             article.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
