@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import static zep.daan.myapplication.R.id.search;
-import static zep.daan.myapplication.R.id.toolbar;
 
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -164,18 +163,25 @@ public class NavigationDrawer extends AppCompatActivity
             toolbar.setTitle("Voorpagina");
         } else if (id == R.id.nav_binnenland) {
             pager.setCurrentItem(1);
+            toolbar.setTitle("Binnenland");
         } else if (id == R.id.nav_buitenland) {
             pager.setCurrentItem(2);
+            toolbar.setTitle("Buitenland");
         } else if (id == R.id.nav_politiek) {
             pager.setCurrentItem(3);
+            toolbar.setTitle("Politiek");
         } else if (id == R.id.nav_economie) {
             pager.setCurrentItem(4);
+            toolbar.setTitle("Economie");
         } else if (id == R.id.nav_technologie) {
             pager.setCurrentItem(5);
+            toolbar.setTitle("Technologie");
         } else if (id == R.id.nav_entertainment) {
             pager.setCurrentItem(6);
+            toolbar.setTitle("Entertainment");
         }else if (id == R.id.nav_sport) {
             pager.setCurrentItem(7);
+            toolbar.setTitle("Sport");
         } else if (id == R.id.instellingen) {
             Intent instellingenIntent = new Intent(this, SettingsActivity.class);
             startActivity(instellingenIntent);
@@ -194,9 +200,10 @@ public class NavigationDrawer extends AppCompatActivity
 
         @Override
         public android.support.v4.app.Fragment getItem(int pos) {
-
+            final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             switch (pos) {
                 case 0:
+                    toolbar.setTitle("Voorpagina");
                     return new FrontpageFragment();
                 case 1:
                     return new BinnenlandFragment();

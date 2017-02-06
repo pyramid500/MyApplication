@@ -1,19 +1,22 @@
 package zep.daan.myapplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.view.MenuItem;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -40,7 +43,12 @@ public class InfoPage extends AppCompatActivity {
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
-
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean textsize = prefs.getBoolean("article_text_size", true);
+        if (textsize == true){
+            TextView article = (TextView) findViewById(R.id.article);
+            article.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        }
         Intent infointent = getIntent();
 
 
