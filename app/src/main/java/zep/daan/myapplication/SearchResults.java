@@ -37,25 +37,10 @@ public class SearchResults extends AppCompatActivity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
             getSupportActionBar().setTitle("Zoekresultaten voor '" + query + "'");
-            ArrayList<myArray> searchResults2 = new myArray().GetSearchResults(getApplicationContext(), null);
-            ArrayList<myArray> results = new ArrayList<myArray>();
-            for(myArray d : searchResults2){
-                String article = (d.getArticle()).toLowerCase();
-                String headline = (d.getHeadline()).toLowerCase();
-                String section = (d.getSection()).toLowerCase();
-                String lquery = query.toLowerCase();
-                if(article.contains(lquery) || headline.contains(lquery) || section.contains(lquery)){
-                    myArray sr = new myArray();
-                    sr.setHeadline(d.getHeadline());
-                    sr.setArticle(d.getArticle());
-                    sr.setSection(d.getSection());
-                    sr.setDate(d.getDate());
-                    sr.setImage(d.getImage());
-                    results.add(sr);
-                }
-                if(!results.isEmpty()) {
+            ArrayList<myArray> searchResults2 = new myArray().GetSearchResults(getApplicationContext(), "searchstring:"+query);
+                if(!searchResults2.isEmpty()) {
                     ListView listView1 = (ListView) findViewById(R.id.search_list);
-                    listView1.setAdapter(new SearchListAdapter(this, results));
+                    listView1.setAdapter(new SearchListAdapter(this, searchResults2));
                     listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,4 +84,3 @@ public class SearchResults extends AppCompatActivity {
         }
     }
 
-}

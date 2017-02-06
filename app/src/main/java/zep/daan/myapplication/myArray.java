@@ -71,8 +71,12 @@ public class myArray {
             throw sqle;
         }
         String whereClause;
+        Boolean search = filter.contains("searchstring:");
         SQLiteDatabase database = new DataBaseHelper(context).getReadableDatabase();
-        if(filter == "front"){
+        if(search == true){
+            whereClause = "Section LIKE '%" + filter.substring(13) + "%' OR Article LIKE '%" + filter.substring(13) + "%'OR Headline LIKE '%" + filter.substring(13) + "%'";
+        }
+        else if(filter == "front"){
             whereClause = "`Frontpage` = 'yes'";
         }
         else if(filter ==null){
@@ -82,7 +86,6 @@ public class myArray {
             whereClause = "`Section` LIKE '"+ filter+"'";
         }
         Cursor cursor = database.query("articlelist", null, whereClause, null, null, null, null);
-
         ArrayList<myArray> results = new ArrayList<myArray>();
 
         while( cursor.moveToNext()){
