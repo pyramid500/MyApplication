@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.view.MenuItem;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+
 import java.io.ByteArrayInputStream;
 
 public class InfoPage extends AppCompatActivity {
@@ -45,16 +48,14 @@ public class InfoPage extends AppCompatActivity {
         String article = infointent.getStringExtra("article");
 
         String date = infointent.getStringExtra("date");
-        String articleTime = date.split("\\s")[1].split("\\.")[0];
-        String articleDate = date.substring(0,10);
-        String articleDateTime = articleDate + ", " + articleTime;
+        DateTime dateTimearticle = DateTime.parse(date, DateTimeFormat.forPattern("yyyy-MM-dd kk:mm"));
 
         String section = infointent.getStringExtra("section");
         String hsection = section.substring(0, 1).toUpperCase() + section.substring(1);
         TextView text = (TextView) findViewById(R.id.headline);
         text.setText(headline);
         TextView text1 = (TextView) findViewById(R.id.date);
-        text1.setText(articleDateTime);
+        text1.setText(dateTimearticle.toString("dd-MM-yyyy, kk:mm"));
         TextView text2 = (TextView) findViewById(R.id.article);
         text2.setText(article);
         ImageView imageView = (ImageView) findViewById(R.id.articleimage);

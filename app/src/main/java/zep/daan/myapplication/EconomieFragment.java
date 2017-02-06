@@ -107,21 +107,16 @@ public class EconomieFragment extends ListFragment implements AdapterView.OnItem
             }
 
             String someDate = searchArrayList.get(position).getDate();
-            String articleTime = someDate.split("\\s")[1].split("\\.")[0];
-            String articleDate = someDate.substring(0,10);
-            String articleDateTime = articleDate + ", " + articleTime;
-
-            String dateResult;
-            DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("dd-MM-yyyy kk:mm"));
+            String dateResult = "";
+            DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("yyyy-MM-dd kk:mm"));
             DateTime presentTime = DateTime.now();
-            dateResult = "Error";
             int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
             if (days > 2) {
-                dateResult = articleDateTime;
+                dateResult = dateTimearticle.toString("dd-MM-yyyy, kk:mm");
             } else if (days == 2) {
-                dateResult = "Eergisteren, " + articleTime;
+                dateResult = "Eergisteren, " + dateTimearticle.toString("kk:mm");
             } else if (days == 1) {
-                dateResult = "Gisteren, " + articleTime;
+                dateResult = "Gisteren, " + dateTimearticle.toString("kk:mm");
             } else if (days < 1) {
                 int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
                 dateResult = Integer.toString(hours) + " uur geleden";

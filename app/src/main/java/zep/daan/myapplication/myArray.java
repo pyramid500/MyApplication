@@ -85,7 +85,7 @@ public class myArray {
         else{
             whereClause = "`Section` LIKE '"+ filter+"'";
         }
-        Cursor cursor = database.query("articlelist", null, whereClause, null, null, null, null);
+        Cursor cursor = database.query("articlelist", null, whereClause, null, null, null, "datetime(`Date`) DESC");
         ArrayList<myArray> results = new ArrayList<myArray>();
 
         while( cursor.moveToNext()){
