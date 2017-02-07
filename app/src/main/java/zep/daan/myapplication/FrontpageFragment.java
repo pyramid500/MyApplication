@@ -125,9 +125,9 @@ public class FrontpageFragment extends ListFragment implements AdapterView.OnIte
 
             holder.txtName.setText(searchArrayList.get(position).getHeadline());
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
+            options.inSampleSize = 2;
             ByteArrayInputStream imageStream = new ByteArrayInputStream(searchArrayList.get(position).getImage());
-            Bitmap theImage = BitmapFactory.decodeStream(imageStream);
+            Bitmap theImage = BitmapFactory.decodeStream(imageStream, null, options);
             holder.image.setImageBitmap(theImage);
             holder.time.setText(dateResult);
             return convertView;
