@@ -151,7 +151,7 @@ public class NavigationDrawer extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         ViewPager pager = (ViewPager) findViewById(R.id.content_frame);
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
-        
+
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // Handle navigation view item clicks here.
         int id = item.getItemId();

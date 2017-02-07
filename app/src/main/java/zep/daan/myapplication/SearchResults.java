@@ -1,8 +1,10 @@
 package zep.daan.myapplication;
 
-import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +12,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.joda.time.Hours;
+import org.joda.time.format.DateTimeFormat;
+
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+
+import static zep.daan.myapplication.R.id.imageView;
 
 public class SearchResults extends AppCompatActivity {
 
@@ -71,7 +82,7 @@ public class SearchResults extends AppCompatActivity {
                 }
                 else{
                     View Layout =  findViewById(R.id.content_navigation_drawer);
-                    LinearLayout layout = (LinearLayout) findViewById(R.id.content_search_results);
+                    RelativeLayout layout = (RelativeLayout) findViewById(R.id.content_search_results);
 
                     TextView noResult = (TextView) findViewById(R.id.no_result);
                     noResult.setText("Geen resultaten gevonden voor '" + query + "'.");
@@ -95,5 +106,73 @@ public class SearchResults extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public class SearchListAdapter extends android.widget.BaseAdapter {
+        private  ArrayList<myArray> searchArrayList;
+
+        private LayoutInflater mInflater;
+
+        public SearchListAdapter(Context context, ArrayList<myArray> results) {
+            searchArrayList = results;
+            mInflater = LayoutInflater.from(context);
+        }
+
+        public int getCount() {
+            return searchArrayList.size();
+        }
+
+        public Object getItem(int position) {
+            return searchArrayList.get(position);
+        }
+
+        public long getItemId(int position) {
+            return position;
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            SearchResults.SearchListAdapter.ViewHolder holder;
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.list_item, null);
+                holder = new SearchResults.SearchListAdapter.ViewHolder();
+                holder.txtName = (TextView) convertView.findViewById(R.id.name);
+                holder.image = (ImageView) convertView.findViewById(imageView);
+                holder.time = (TextView) convertView.findViewById(R.id.time);
+                convertView.setTag(holder);
+            } else {
+                holder = (SearchResults.SearchListAdapter.ViewHolder) convertView.getTag();
+            }
+
+            String someDate = searchArrayList.get(position).getDate();
+            String dateResult = "";
+            DateTime dateTimearticle = DateTime.parse(someDate, DateTimeFormat.forPattern("yyyy-MM-dd kk:mm"));
+            DateTime presentTime = DateTime.now();
+            int days = Days.daysBetween(dateTimearticle, presentTime).getDays();
+            if (days > 2) {
+                dateResult = dateTimearticle.toString("dd-MM-yy, kk:mm");
+            } else if (days == 2) {
+                dateResult = "Eergisteren, " + dateTimearticle.toString("kk:mm");
+            } else if (days == 1) {
+                dateResult = "Gisteren, " + dateTimearticle.toString("kk:mm");
+            } else if (days < 1) {
+                int hours = Hours.hoursBetween(dateTimearticle, presentTime).getHours();
+                dateResult = Integer.toString(hours) + " uur geleden";
+            }
+
+            holder.txtName.setText(searchArrayList.get(position).getHeadline());
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            ByteArrayInputStream imageStream = new ByteArrayInputStream(searchArrayList.get(position).getImage());
+            Bitmap theImage= BitmapFactory.decodeStream(imageStream);
+            holder.image.setImageBitmap(theImage);
+            holder.time.setText(dateResult);
+            return convertView;
+        }
+
+         class ViewHolder {
+            TextView txtName;
+            TextView time;
+            ImageView image;
+
+        }
+    }
     }
 
