@@ -27,8 +27,6 @@
         <activity
             android:name=".NavigationDrawer"
             android:screenOrientation="portrait">
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".SearchResults" />
