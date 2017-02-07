@@ -183,6 +183,7 @@ public class NavigationDrawer extends AppCompatActivity
             toolbar.setTitle("Sport");
         } else if (id == R.id.instellingen) {
             Intent instellingenIntent = new Intent(this, SettingsActivity.class);
+            toolbar.setTitle("Voorpagina");
             startActivity(instellingenIntent);
         }
 
@@ -203,7 +204,6 @@ public class NavigationDrawer extends AppCompatActivity
             NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
             switch (pos) {
                 case 0:
-                    toolbar.setTitle("Voorpagina");
                     navigationView.getMenu().getItem(0).setChecked(true);
                     return new FrontpageFragment();
                 case 1:
